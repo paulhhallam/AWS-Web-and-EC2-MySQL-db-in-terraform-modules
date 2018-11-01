@@ -21,4 +21,5 @@ Once created the infrastructure can be tested by accessing the web pages:
 	This will present the PHP info page for the phpapp EC2 instance
 
 	http://<Public DNS of the EC2 instance phpapp>/mydb.php
-	This will present the result of a query against the Mariadb database on the second EC2 instance; however please be patient as it can take over 5 minutes for the yum update, patching and database setup to complete before the page is available.
+	This will present the result of a query against the Mariadb database on the second EC2 instance.
+	Please be patient as it can take over 5 minutes for the yum update, patching and database setup to complete before the page is available.
