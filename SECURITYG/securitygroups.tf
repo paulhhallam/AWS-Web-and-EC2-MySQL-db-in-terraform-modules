@@ -1,9 +1,10 @@
 resource "aws_security_group" "FrontEnd" {
   name = "FrontEnd"
-  vpc_id = "${var.TOPvpc_id}"
+  vpc_id = "${var.MYvpc_id}"
   description = "ONLY HTTP CONNECTION INBOUND"
   tags {
-    Name = "DEVv2 FrontEnd"
+    Name = "FrontEnd"
+	Environment = "${var.MYenvironment}"
 	}
   ingress {
     from_port = 80
@@ -27,10 +28,11 @@ resource "aws_security_group" "FrontEnd" {
 
 resource "aws_security_group" "Database" {
   name = "DEVv2 Database"
-  vpc_id = "${var.TOPvpc_id}"
+  vpc_id = "${var.MYvpc_id}"
   description = "ONLY tcp CONNECTION INBOUND"
   tags {
-    Name = "Database"
+    Name = "database"
+	Environment = "${var.MYenvironment}"
 	}
   ingress {
     from_port = 3306

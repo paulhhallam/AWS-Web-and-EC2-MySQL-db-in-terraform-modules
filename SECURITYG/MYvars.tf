@@ -11,6 +11,10 @@ variable "MYaws_instance_type" {
     default = "t2.micro"
 }
 
+variable "MYenvironment" {
+  default = "TFP"
+  }
+
 variable "MYamis" {
   type = "map"
    default = {
@@ -25,7 +29,7 @@ variable "MYsecgrpdbid" {
   default = ""
 }
   
-variable "TOPvpc_id" {
+variable "MYvpc_id" {
   description = "ID of VPC"
   default = ""
 }
@@ -72,6 +76,6 @@ variable "MYvpcsubn-pri-cidr" {
 }
 
 variable "MYDnsZoneName" {
-  default = "moluccan.int"
+  default = "NET.int"
   description = "the internal dns name"
 }

@@ -1,6 +1,10 @@
 resource "aws_vpc_dhcp_options" "mydhcp" {
   domain_name = "${var.MYDnsZoneName}"
   domain_name_servers = ["AmazonProvidedDNS"]
+  tags {
+    Name = "My internal name"
+	Environment = "${var.MYenvironment}"
+  }
 }
 
 resource "aws_vpc_dhcp_options_association" "dns_resolver" {
@@ -12,11 +16,10 @@ resource "aws_vpc_dhcp_options_association" "dns_resolver" {
 
 resource "aws_route53_zone" "main" {
   name    = "${var.MYDnsZoneName}"
-  vpc_id  = "${var.MYvpc_id}"
-  comment = "Managed by PHH"
-  tags {
-        Name = "DEVv2"
+  vpc {
+    vpc_id  = "${var.MYvpc_id}"
   }
+  comment = "Managed by ME"
 }
 
 resource "aws_route53_record" "database" {

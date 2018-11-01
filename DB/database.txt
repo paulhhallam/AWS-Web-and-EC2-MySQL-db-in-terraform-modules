@@ -1,0 +1,26 @@
+
+#!/bin/bash
+
+
+sleep 60
+
+sudo yum update -y
+sudo setsebool -P httpd_can_network_connect_db 1
+sudo yum install -y php php-pear php-mysql
+sudo yum install -y mariadb-server
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo mysql -u root -e 'CREATE TABLE mytable (mycol varchar(255));' test
+sudo mysql -u root -e 'INSERT INTO mytable (mycol) values ("MyValues") ;' test
+sudo mysql -u root -e "grant all on test.* to 'root'@'localhost';"
+sudo mysql -u root -e "grant all on test.* to 'root'@'%';"
+sudo mysql -u root -e "create user 'phh'@'%' IDENTIFIED BY 'kjh865LJHG98[[76';"
+#sudo mysql -u root -e "create user 'phh'@'localhost' IDENTIFIED BY 'kjh865LJHG98[[76';"
+#sudo mysql -u root -e "grant all privileges on *.*  to 'phh'@'localhost';"
+sudo mysql -u root -e "grant all privileges on *.*  to 'phh'@'%';"
+sudo mysql -u root -e "grant all on test.* to 'phh'@'%';"
+sudo mysql -u root -e "flush privileges;"
+
+sudo mysql -u root -e "set password for 'root'@'localhost' = PASSWORD('kjh865LJHG98[[76');" 
+
+#ALTER user root IDENTIFIED BY 'kjh865LJHG98[[76';

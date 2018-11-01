@@ -5,7 +5,8 @@ data "aws_availability_zones" "available" {}
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${var.MYvpc_id}"
   tags {
-    Name = "DEVv2 internet gw moluccan generated"
+    Name = "internet gw MY generated"
+	Environment = "${var.MYenvironment}"
   }
 }
 resource "aws_network_acl" "all" {
@@ -27,15 +28,16 @@ resource "aws_network_acl" "all" {
     to_port = 0
   }
   tags {
-    Name = "DEVv2 open acl"
+    Name = "open acl"
+	Environment = "${var.MYenvironment}"
   }
 }
 
 resource "aws_route_table" "public" {
   vpc_id = "${var.MYvpc_id}"
   tags {
-      Name = "DEVv2 Public"
-  }
+    Name = "Public"
+	Environment = "${var.MYenvironment}"  }
   route {
         cidr_block = "0.0.0.0/0"
         gateway_id = "${aws_internet_gateway.gw.id}"
@@ -45,7 +47,8 @@ resource "aws_route_table" "public" {
 resource "aws_route_table" "private" {
   vpc_id = "${var.MYvpc_id}"
   tags {
-      Name = "DEVv2 Private"
+    Name = "Private"
+	Environment = "${var.MYenvironment}"
   }
   route {
         cidr_block = "0.0.0.0/0"
@@ -55,9 +58,6 @@ resource "aws_route_table" "private" {
 
 resource "aws_eip" "forNat" {
   vpc      = true
-  tags {
-    Name = "DEVv2"
-  }
 }
 
 resource "aws_route_table_association" "PublicAZA" {
@@ -85,7 +85,8 @@ resource "aws_subnet" "PublicAZA" {
   vpc_id = "${var.MYvpc_id}"
   cidr_block = "${var.MYvpcsubn-pub-cidr}"
   tags {
-        Name = "DEVv2 PublicAZA"
+	Name = "PublicAZA"
+	Environment = "${var.MYenvironment}"
   }
  availability_zone = "${data.aws_availability_zones.available.names[0]}"
 }
@@ -94,10 +95,34 @@ resource "aws_subnet" "PrivateAZA" {
   vpc_id = "${var.MYvpc_id}"
   cidr_block = "${var.MYvpcsubn-pri-cidr}"
   tags {
-        Name = "DEVv2 PublicAZB"
+    Name = "PublicAZB"
+	Environment = "${var.MYenvironment}"
   }
   availability_zone = "${data.aws_availability_zones.available.names[1]}"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
