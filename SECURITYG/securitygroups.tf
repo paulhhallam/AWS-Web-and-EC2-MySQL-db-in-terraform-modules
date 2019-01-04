@@ -27,7 +27,7 @@ resource "aws_security_group" "FrontEnd" {
 }
 
 resource "aws_security_group" "Database" {
-  name = "DEVv2 Database"
+  name = "Database"
   vpc_id = "${var.MYvpc_id}"
   description = "ONLY tcp CONNECTION INBOUND"
   tags {
