@@ -7,6 +7,9 @@ resource "aws_instance" "webphpapp" {
   subnet_id = "${var.MYsubnet_publicAZA_id}"
   vpc_security_group_ids = ["${var.MYsecfrntid}"]
   key_name = "${var.aws_key_name}"
+  root_block_device {
+	  delete_on_termination = true
+	  }
   tags {
     Name = "phpapp"
 	Environment = "${var.MYenvironment}"
