@@ -1,18 +1,17 @@
 #!/bin/bash
 
-cat > ~/mysqldb.sh << EOF
+#cat > ~/mysqldb.sh << EOF
 
-sleep 60
+sleep 120
 
 sudo yum update -y
-echo "UPDATE COMPLETE **************************"
 sudo setsebool -P httpd_can_network_connect_db 1
 sudo yum install -y php php-pear php-mysql
+
 sudo yum install -y mariadb-server
-echo "INSTALLS COMPLETE **************************"
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
-echo "START MYSQL ********************************"
+
 sudo mysql -u root -e 'CREATE TABLE mytable (mycol varchar(255));' test
 sudo mysql -u root -e 'INSERT INTO mytable (mycol) values ("MyValues") ;' test
 sudo mysql -u root -e "grant all on test.* to 'root'@'localhost';"
@@ -23,11 +22,13 @@ sudo mysql -u root -e "create user 'phh'@'%' IDENTIFIED BY 'kjh865LJHG98[[76';"
 sudo mysql -u root -e "grant all privileges on *.*  to 'phh'@'%';"
 sudo mysql -u root -e "grant all on test.* to 'phh'@'%';"
 sudo mysql -u root -e "flush privileges;"
+
 sudo mysql -u root -e "set password for 'root'@'localhost' = PASSWORD('kjh865LJHG98[[76');"
-echo "MYSQL COMPLETE ********************************"
+
+#echo "MYSQL COMPLETE ********************************"
 #ALTER user root IDENTIFIED BY 'kjh865LJHG98[[76';
-EOF
+#EOF
 
-chmod 777 ~/mysqldb.sh
+#chmod 777 ~/mysqldb.sh
 
-sudo ~/mysqldb.sh > ~/mysqldb.log
+#sudo ~/mysqldb.sh > ~/mysqldb.log
