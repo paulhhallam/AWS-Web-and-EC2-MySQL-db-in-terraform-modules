@@ -4,7 +4,7 @@ resource "aws_vpc" "DevEc2DbVpc" {
   enable_dns_support = true
   enable_dns_hostnames = true
   tags {
-    Name = "DEVv2 DevEc2DbVpc"
+    Name = "DevEc2DbVpc"
 	Environment = "${var.MYenvironment}"
   }
 }
