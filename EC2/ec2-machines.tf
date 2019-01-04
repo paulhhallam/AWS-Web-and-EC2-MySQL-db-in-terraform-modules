@@ -1,7 +1,7 @@
 resource "aws_instance" "webphpapp" {
 # NV - Centos
-  ami = "ami-9887c6e7"
-# ami = "${lookup(var.MYamis, var.MYregion)}"
+#  ami = "ami-9887c6e7"
+  ami = "${lookup(var.MYamis, var.MYregion)}"
   instance_type = "t2.micro"
   associate_public_ip_address = "true"
   subnet_id = "${var.MYsubnet_publicAZA_id}"

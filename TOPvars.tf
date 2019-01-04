@@ -4,8 +4,7 @@ variable "TOPdatabase_private_ip" {
 }
 
 variable "TOPregion" {
-  default = "us-east-1"
-# default = "us-east-2"
+ default = "us-east-2"
 }
 
 variable "environment" {
@@ -18,17 +17,9 @@ variable "TOPaws_instance_type" {
 
 variable "TOPamis" {
 # Centos
-# https://wiki.centos.org/Cloud/AWS#head-cc841c2a7d874025ae24d427776e05c7447024b2
   default = {
-    "us-east-1" = "ami-9887c6e7"	
+     "us-east-2" = "ami-9c0638f9"
   } 
-# Ubuntu
-#  type = "map"
-#	default = {
-#    "us-east-1" = "ami-b374d5a5"
-#	"us-east-2" = "ami-5e8bb23b"
-#    "us-west-2" = "ami-4b32be2b"
-#  } 
 }
 
 variable "TOPsecgrpdbid" {
