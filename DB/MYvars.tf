@@ -4,7 +4,7 @@ variable "MYdatabase_private_ip" {
 }
   
 variable "MYregion" {
-  default = "us-east-1"
+  default = "us-east-2"
 }
 
 variable "MYaws_instance_type" {
@@ -18,7 +18,7 @@ variable "MYenvironment" {
 variable "MYamis" {
   type = "map"
    default = {
-    "us-east-1" = "ami-9887c6e7"
+    "us-east-2" = "ami-9c0638f9"
   } 
 }
 
